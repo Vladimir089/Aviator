@@ -9,21 +9,32 @@
 /* Begin PBXBuildFile section */
 		15000AEC2C7CADAF00DB45BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000AEB2C7CADAF00DB45BC /* AppDelegate.swift */; };
 		15000AEE2C7CADAF00DB45BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000AED2C7CADAF00DB45BC /* SceneDelegate.swift */; };
-		15000AF02C7CADAF00DB45BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000AEF2C7CADAF00DB45BC /* ViewController.swift */; };
 		15000AF32C7CADAF00DB45BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15000AF12C7CADAF00DB45BC /* Main.storyboard */; };
 		15000AF52C7CADB100DB45BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15000AF42C7CADB100DB45BC /* Assets.xcassets */; };
 		15000AF82C7CADB100DB45BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15000AF62C7CADB100DB45BC /* LaunchScreen.storyboard */; };
+		15000B022C7CAF6700DB45BC /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B012C7CAF6700DB45BC /* LoadViewController.swift */; };
+		15000B052C7CB22200DB45BC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 15000B042C7CB22200DB45BC /* SnapKit */; };
+		15000B082C7CB55500DB45BC /* OnbUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B072C7CB55500DB45BC /* OnbUserViewController.swift */; };
+		15000B0B2C7CC90600DB45BC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B0A2C7CC90600DB45BC /* TabBarViewController.swift */; };
+		15000B0E2C7CC93700DB45BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B0D2C7CC93700DB45BC /* HomeViewController.swift */; };
+		15000B112C7CDC9100DB45BC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B102C7CDC9100DB45BC /* Model.swift */; };
+		15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B122C7CF2C400DB45BC /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15000AE82C7CADAF00DB45BC /* Aviator Adventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aviator Adventures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15000AEB2C7CADAF00DB45BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15000AED2C7CADAF00DB45BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		15000AEF2C7CADAF00DB45BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		15000AF22C7CADAF00DB45BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15000AF42C7CADB100DB45BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15000AF72C7CADB100DB45BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15000AF92C7CADB100DB45BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15000B012C7CAF6700DB45BC /* LoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
+		15000B072C7CB55500DB45BC /* OnbUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnbUserViewController.swift; sourceTree = "<group>"; };
+		15000B0A2C7CC90600DB45BC /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		15000B0D2C7CC93700DB45BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		15000B102C7CDC9100DB45BC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		15000B122C7CF2C400DB45BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15000B052C7CB22200DB45BC /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +68,68 @@
 		15000AEA2C7CADAF00DB45BC /* Aviator Adventures */ = {
 			isa = PBXGroup;
 			children = (
-				15000AEB2C7CADAF00DB45BC /* AppDelegate.swift */,
-				15000AED2C7CADAF00DB45BC /* SceneDelegate.swift */,
-				15000AEF2C7CADAF00DB45BC /* ViewController.swift */,
-				15000AF12C7CADAF00DB45BC /* Main.storyboard */,
-				15000AF42C7CADB100DB45BC /* Assets.xcassets */,
-				15000AF62C7CADB100DB45BC /* LaunchScreen.storyboard */,
+				15000B0F2C7CDC8600DB45BC /* Model */,
+				15000B0C2C7CC90A00DB45BC /* Home */,
+				15000B092C7CC8EC00DB45BC /* TabBar */,
+				15000B062C7CB53F00DB45BC /* OnbUser */,
+				15000B002C7CAF5100DB45BC /* Onb */,
+				15000AFF2C7CAE8000DB45BC /* Support */,
 				15000AF92C7CADB100DB45BC /* Info.plist */,
 			);
 			path = "Aviator Adventures";
+			sourceTree = "<group>";
+		};
+		15000AFF2C7CAE8000DB45BC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				15000AED2C7CADAF00DB45BC /* SceneDelegate.swift */,
+				15000AF12C7CADAF00DB45BC /* Main.storyboard */,
+				15000AF62C7CADB100DB45BC /* LaunchScreen.storyboard */,
+				15000AF42C7CADB100DB45BC /* Assets.xcassets */,
+				15000AEB2C7CADAF00DB45BC /* AppDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		15000B002C7CAF5100DB45BC /* Onb */ = {
+			isa = PBXGroup;
+			children = (
+				15000B012C7CAF6700DB45BC /* LoadViewController.swift */,
+			);
+			path = Onb;
+			sourceTree = "<group>";
+		};
+		15000B062C7CB53F00DB45BC /* OnbUser */ = {
+			isa = PBXGroup;
+			children = (
+				15000B072C7CB55500DB45BC /* OnbUserViewController.swift */,
+			);
+			path = OnbUser;
+			sourceTree = "<group>";
+		};
+		15000B092C7CC8EC00DB45BC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				15000B0A2C7CC90600DB45BC /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		15000B0C2C7CC90A00DB45BC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				15000B0D2C7CC93700DB45BC /* HomeViewController.swift */,
+				15000B122C7CF2C400DB45BC /* ProfileViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		15000B0F2C7CDC8600DB45BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15000B102C7CDC9100DB45BC /* Model.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +148,9 @@
 			dependencies = (
 			);
 			name = "Aviator Adventures";
+			packageProductDependencies = (
+				15000B042C7CB22200DB45BC /* SnapKit */,
+			);
 			productName = "Aviator Adventures";
 			productReference = 15000AE82C7CADAF00DB45BC /* Aviator Adventures.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +179,9 @@
 				Base,
 			);
 			mainGroup = 15000ADF2C7CADAF00DB45BC;
+			packageReferences = (
+				15000B032C7CB22200DB45BC /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 15000AE92C7CADAF00DB45BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15000AF02C7CADAF00DB45BC /* ViewController.swift in Sources */,
+				15000B112C7CDC9100DB45BC /* Model.swift in Sources */,
+				15000B022C7CAF6700DB45BC /* LoadViewController.swift in Sources */,
 				15000AEC2C7CADAF00DB45BC /* AppDelegate.swift in Sources */,
 				15000AEE2C7CADAF00DB45BC /* SceneDelegate.swift in Sources */,
+				15000B0B2C7CC90600DB45BC /* TabBarViewController.swift in Sources */,
+				15000B082C7CB55500DB45BC /* OnbUserViewController.swift in Sources */,
+				15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */,
+				15000B0E2C7CC93700DB45BC /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,11 +370,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Aviator Adventures/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Aviator Adventures";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,6 +383,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k.Aviator-Adventures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,11 +401,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Aviator Adventures/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Aviator Adventures";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,6 +414,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k.Aviator-Adventures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -361,6 +445,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		15000B032C7CB22200DB45BC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15000B042C7CB22200DB45BC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15000B032C7CB22200DB45BC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15000AE02C7CADAF00DB45BC /* Project object */;
 }
