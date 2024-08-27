@@ -10,7 +10,8 @@ import UIKit
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
     weak var delegate: HomeViewControllerDelegate?
-    var user: User?
+    weak var secDel: ExcurseViewControllerDelegate?
+    var userProf: User?
     
     var imageView: UIImageView?
     var nameTextField: UITextField?
@@ -188,11 +189,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate ,
          do {
              let data = try JSONEncoder().encode(user) //тут мкассив конвертируем в дату
              try saveAthleteArrToFile(data: data)
-             delegate?.reloadProfileButton(user: user)
+             saveGlobal(redUser: user)
+             delegate?.reloadProfileButton(userRed: user)
+             secDel?.reloadProfile()
              close()
          } catch {
              print("Failed to encode or save athleteArr: \(error)")
          }
+    }
+    
+    func saveGlobal(redUser: User) {
+        user = redUser
     }
     
     func saveAthleteArrToFile(data: Data) throws {

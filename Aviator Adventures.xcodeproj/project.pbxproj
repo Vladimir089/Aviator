@@ -19,6 +19,8 @@
 		15000B0E2C7CC93700DB45BC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B0D2C7CC93700DB45BC /* HomeViewController.swift */; };
 		15000B112C7CDC9100DB45BC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B102C7CDC9100DB45BC /* Model.swift */; };
 		15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B122C7CF2C400DB45BC /* ProfileViewController.swift */; };
+		15000B162C7DE66900DB45BC /* ExcurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B152C7DE66900DB45BC /* ExcurseViewController.swift */; };
+		15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		15000B0D2C7CC93700DB45BC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		15000B102C7CDC9100DB45BC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		15000B122C7CF2C400DB45BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		15000B152C7DE66900DB45BC /* ExcurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcurseViewController.swift; sourceTree = "<group>"; };
+		15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAndEditExcViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		15000AEA2C7CADAF00DB45BC /* Aviator Adventures */ = {
 			isa = PBXGroup;
 			children = (
+				15000B142C7DE64F00DB45BC /* Excurs */,
 				15000B0F2C7CDC8600DB45BC /* Model */,
 				15000B0C2C7CC90A00DB45BC /* Home */,
 				15000B092C7CC8EC00DB45BC /* TabBar */,
@@ -130,6 +135,15 @@
 				15000B102C7CDC9100DB45BC /* Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		15000B142C7DE64F00DB45BC /* Excurs */ = {
+			isa = PBXGroup;
+			children = (
+				15000B152C7DE66900DB45BC /* ExcurseViewController.swift */,
+				15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */,
+			);
+			path = Excurs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,12 +223,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */,
 				15000B112C7CDC9100DB45BC /* Model.swift in Sources */,
 				15000B022C7CAF6700DB45BC /* LoadViewController.swift in Sources */,
 				15000AEC2C7CADAF00DB45BC /* AppDelegate.swift in Sources */,
 				15000AEE2C7CADAF00DB45BC /* SceneDelegate.swift in Sources */,
 				15000B0B2C7CC90600DB45BC /* TabBarViewController.swift in Sources */,
 				15000B082C7CB55500DB45BC /* OnbUserViewController.swift in Sources */,
+				15000B162C7DE66900DB45BC /* ExcurseViewController.swift in Sources */,
 				15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */,
 				15000B0E2C7CC93700DB45BC /* HomeViewController.swift in Sources */,
 			);

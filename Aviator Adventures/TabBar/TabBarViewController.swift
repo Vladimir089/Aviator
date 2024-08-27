@@ -1,12 +1,14 @@
 import UIKit
 import SnapKit // Если используете SnapKit для авторазметки
 
+var buttons: [UIButton] = []
+
 class TabBarViewController: UITabBarController {
 
     let tabbarView = UIView()
     let tabbarItemBackgroundView = UIView()
     var centerConstraint: NSLayoutConstraint?
-    var buttons: [UIButton] = []
+    
 
     override func viewDidLoad() {
         UserDefaults.standard.set("w", forKey: "tab")
@@ -58,7 +60,7 @@ class TabBarViewController: UITabBarController {
 
     private func generateControllers() {
         let home = generateViewControllers(image: UIImage.tab1, vc: HomeViewController())
-        let profile = generateViewControllers(image: UIImage.tab2, vc: UIViewController())
+        let profile = generateViewControllers(image: UIImage.tab2, vc: ExcurseViewController())
         let setting = generateViewControllers(image: UIImage.tab3, vc: UIViewController())
         let bookmark = generateViewControllers(image: UIImage.tab4, vc: UIViewController())
         viewControllers = [home, profile, setting, bookmark]
@@ -76,7 +78,7 @@ class TabBarViewController: UITabBarController {
         return vc
     }
     
-    @objc private func buttonTapped(sender: UIButton) {
+    @objc func buttonTapped(sender: UIButton) {
           selectedIndex = sender.tag
             
           for button in buttons {
@@ -86,8 +88,8 @@ class TabBarViewController: UITabBarController {
           
           UIView.animate(withDuration: 0.2, delay: 0 , options: .beginFromCurrentState) {
              
-              self.buttons[sender.tag].tintColor = .white
-              self.buttons[sender.tag].backgroundColor = UIColor(red: 229/255, green: 25/255, blue: 64/255, alpha: 1)
+              buttons[sender.tag].tintColor = .white
+              buttons[sender.tag].backgroundColor = UIColor(red: 229/255, green: 25/255, blue: 64/255, alpha: 1)
               self.tabbarView.layoutIfNeeded()
            }
        }
