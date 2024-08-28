@@ -21,6 +21,7 @@
 		15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B122C7CF2C400DB45BC /* ProfileViewController.swift */; };
 		15000B162C7DE66900DB45BC /* ExcurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B152C7DE66900DB45BC /* ExcurseViewController.swift */; };
 		15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */; };
+		15000B452C7FA40200DB45BC /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B442C7FA40200DB45BC /* CountryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		15000B122C7CF2C400DB45BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		15000B152C7DE66900DB45BC /* ExcurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcurseViewController.swift; sourceTree = "<group>"; };
 		15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAndEditExcViewController.swift; sourceTree = "<group>"; };
+		15000B442C7FA40200DB45BC /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				15000B152C7DE66900DB45BC /* ExcurseViewController.swift */,
 				15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */,
+				15000B442C7FA40200DB45BC /* CountryViewController.swift */,
 			);
 			path = Excurs;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */,
 				15000B112C7CDC9100DB45BC /* Model.swift in Sources */,
+				15000B452C7FA40200DB45BC /* CountryViewController.swift in Sources */,
 				15000B022C7CAF6700DB45BC /* LoadViewController.swift in Sources */,
 				15000AEC2C7CADAF00DB45BC /* AppDelegate.swift in Sources */,
 				15000AEE2C7CADAF00DB45BC /* SceneDelegate.swift in Sources */,

@@ -230,7 +230,7 @@ class HomeViewController: UIViewController {
             print("Unable to get document directory")
             return nil
         }
-        let filePath = documentDirectory.appendingPathComponent("exc.plist")
+        let filePath = documentDirectory.appendingPathComponent("excu.plist")
         do {
             let data = try Data(contentsOf: filePath)
             let athleteArr = try JSONDecoder().decode([Excursion].self, from: data)
@@ -363,7 +363,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             twoCard?.snp.makeConstraints({ make in
                 make.height.equalTo(178)
                 make.width.equalTo(185)
-                make.left.equalToSuperview().inset(15)
+                make.left.equalToSuperview()
                 make.bottom.equalToSuperview().inset(30)
             })
         }
@@ -374,7 +374,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             threeCard?.snp.makeConstraints({ make in
                 make.height.equalTo(178)
                 make.width.equalTo(185)
-                make.right.equalToSuperview().inset(15)
+                make.right.equalToSuperview()
                 make.bottom.equalToSuperview().inset(30)
             })
         }

@@ -13,6 +13,7 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
     var showCountry = true
     weak var delegate: ExcurseViewControllerDelegate?
     var secondDelegate: HomeViewControllerDelegate?
+    var threeDelegate: CountryViewControllerDelegate?
     
     //если редактироание
     var excurseEdit: Excursion?
@@ -29,6 +30,9 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
     var arrButtons: [UIButton] = []
     var countryLabel: UILabel?
     var country: String?
+    
+    var excurseRedd: [Excursion]?
+    var oldIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,6 +255,11 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
            excursions[index] = excursion
        }
        print(excursion)
+       
+       if excurseRedd != nil {
+           excurseRedd?[oldIndex] = excursion
+           threeDelegate?.reload(elements: excurseRedd ?? [])
+       }
  
         do {
             let data = try JSONEncoder().encode(excursions) //тут мкассив конвертируем в дату
@@ -267,7 +276,7 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
     func saveAthleteArrToFile(data: Data) throws {
         let fileManager = FileManager.default
         if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let filePath = documentDirectory.appendingPathComponent("exc.plist")
+            let filePath = documentDirectory.appendingPathComponent("excu.plist")
             try data.write(to: filePath)
         } else {
             throw NSError(domain: "SaveError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unable to get document directory"])
