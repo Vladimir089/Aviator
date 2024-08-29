@@ -61,7 +61,7 @@ class TabBarViewController: UITabBarController {
     private func generateControllers() {
         let home = generateViewControllers(image: UIImage.tab1, vc: HomeViewController())
         let profile = generateViewControllers(image: UIImage.tab2, vc: ExcurseViewController())
-        let setting = generateViewControllers(image: UIImage.tab3, vc: UIViewController())
+        let setting = generateViewControllers(image: UIImage.tab3, vc: OldExcurseViewController())
         let bookmark = generateViewControllers(image: UIImage.tab4, vc: UIViewController())
         viewControllers = [home, profile, setting, bookmark]
     }

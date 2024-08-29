@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate ,
     
     weak var delegate: HomeViewControllerDelegate?
     weak var secDel: ExcurseViewControllerDelegate?
+    weak var theeDel: OldExcurseViewController?
     var userProf: User?
     
     var imageView: UIImageView?
@@ -192,6 +193,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate ,
              saveGlobal(redUser: user)
              delegate?.reloadProfileButton(userRed: user)
              secDel?.reloadProfile()
+             theeDel?.reloadProfile()
              close()
          } catch {
              print("Failed to encode or save athleteArr: \(error)")

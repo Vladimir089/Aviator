@@ -12,8 +12,10 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
     var isNew = true
     var showCountry = true
     weak var delegate: ExcurseViewControllerDelegate?
-    var secondDelegate: HomeViewControllerDelegate?
-    var threeDelegate: CountryViewControllerDelegate?
+    weak var secondDelegate: HomeViewControllerDelegate?
+    weak var threeDelegate: CountryViewControllerDelegate?
+    weak var fourDelegate: DetailExcurseViewControllerDelegate?
+    weak var oldDelegate: OldExcurseViewControllerDelegate?
     
     //если редактироание
     var excurseEdit: Excursion?
@@ -33,6 +35,8 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
     
     var excurseRedd: [Excursion]?
     var oldIndex = 0
+    
+    var isOld = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -250,9 +254,19 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
         let excursion = Excursion(image: imageData.jpegData(compressionQuality: 0.5) ?? Data(), country: countryNew, name: name, type: type, cost: cost, desc: description, isActive: true, impressions: [])
         
        if isNew == true {
-           excursions.append(excursion)
+           if isOld == true {
+               oldExcursions.append(excursion)
+           } else {
+               excursions.append(excursion)
+           }
+           
        } else {
-           excursions[index] = excursion
+           if isOld == true {
+               oldExcursions[index] = excursion
+           } else {
+               excursions[index] = excursion
+           }
+          
        }
        print(excursion)
        
@@ -260,16 +274,32 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
            excurseRedd?[oldIndex] = excursion
            threeDelegate?.reload(elements: excurseRedd ?? [])
        }
+       
+      
  
         do {
             let data = try JSONEncoder().encode(excursions) //тут мкассив конвертируем в дату
             try saveAthleteArrToFile(data: data)
             delegate?.reloadData()
             secondDelegate?.reloadData()
+            fourDelegate?.edited()
+            oldDelegate?.reloadData()
             self.dismiss(animated: true)
         } catch {
             print("Failed to encode or save athleteArr: \(error)")
         }
+       
+       do {
+           let data = try JSONEncoder().encode(oldExcursions) //тут мкассив конвертируем в дату
+           try saveoldArrToFile(data: data)
+           delegate?.reloadData()
+           secondDelegate?.reloadData()
+           fourDelegate?.edited()
+           oldDelegate?.reloadData()
+           self.dismiss(animated: true)
+       } catch {
+           print("Failed to encode or save athleteArr: \(error)")
+       }
     }
     
     
@@ -277,6 +307,16 @@ class NewAndEditExcViewController: UIViewController, UIImagePickerControllerDele
         let fileManager = FileManager.default
         if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
             let filePath = documentDirectory.appendingPathComponent("excu.plist")
+            try data.write(to: filePath)
+        } else {
+            throw NSError(domain: "SaveError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unable to get document directory"])
+        }
+    }
+    
+    func saveoldArrToFile(data: Data) throws {
+        let fileManager = FileManager.default
+        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let filePath = documentDirectory.appendingPathComponent("oldExcu.plist")
             try data.write(to: filePath)
         } else {
             throw NSError(domain: "SaveError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unable to get document directory"])

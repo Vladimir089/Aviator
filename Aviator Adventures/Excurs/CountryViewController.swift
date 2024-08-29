@@ -21,6 +21,8 @@ class CountryViewController: UIViewController {
     var collection: UICollectionView?
     var sortedArr: [Excursion]?
     
+    var isOld = false
+    
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.reloadData()
         delegate = nil
@@ -37,12 +39,36 @@ class CountryViewController: UIViewController {
         sortedArr = elements?.1
         fillButtons()
         createInterface()
+        checkIsOld()
     }
     
     func settingsNav() {
         self.title = elements?.0
         navigationController?.navigationBar.tintColor = UIColor(red: 239/255, green: 59/255, blue: 51/255, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    func checkIsOld() {
+        
+        if isOld == true {
+            let label = UILabel()
+            label.textColor = .white
+            label.font = .systemFont(ofSize: 28, weight: .bold)
+            label.numberOfLines = 0
+            label.text = "Add your photos and\nimpressions to the\nexcursions you visit"
+            view.addSubview(label)
+            label.snp.makeConstraints { make in
+                make.left.equalToSuperview().inset(15)
+                make.top.equalTo(arrButtons[4].snp.bottom).inset(-15)
+            }
+            
+            collection?.snp.remakeConstraints({ make in
+                make.left.right.equalToSuperview().inset(15)
+                make.bottom.equalToSuperview()
+                make.top.equalTo(label.snp.bottom).inset(-15)
+            })
+        }
+        
     }
     
     func fillButtons() {
@@ -240,16 +266,31 @@ extension CountryViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.subviews.forEach { $0.removeFromSuperview() }
         cell.layer.cornerRadius = 20
         cell.clipsToBounds = true
-        cell.backgroundColor = .black
+        if isOld == false {
+            cell.backgroundColor = .black
+        } else {
+            cell.backgroundColor = UIColor(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        }
+       
         
         let imageView = UIImageView(image: UIImage(data: elements?.1[indexPath.row].image ?? Data()))
         imageView.clipsToBounds = true
         
+        
         cell.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.height.equalTo(151)
+        if isOld == true {
+            imageView.layer.cornerRadius = 20
+            imageView.snp.makeConstraints { make in
+                make.left.right.top.equalToSuperview()
+                make.height.equalTo(208)
+            }
+        } else {
+            imageView.snp.makeConstraints { make in
+                make.left.right.top.equalToSuperview()
+                make.height.equalTo(151)
+            }
         }
+        
         let topLabel = UILabel()
         topLabel.text = sortedArr?[indexPath.row].name
         topLabel.numberOfLines = 2
@@ -257,40 +298,89 @@ extension CountryViewController: UICollectionViewDelegate, UICollectionViewDataS
         topLabel.textColor = .white
         topLabel.font = .systemFont(ofSize: 17, weight: .semibold)
         cell.addSubview(topLabel)
+        
         topLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(10)
             make.top.equalTo(imageView.snp.bottom)
         }
         
-        let botLabel = UILabel()
-        botLabel.text = sortedArr?[indexPath.row].cost
-        botLabel.font = .systemFont(ofSize: 15, weight: .regular)
-        botLabel.textColor = .white
-        cell.addSubview(botLabel)
-        botLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(10)
-            make.left.equalToSuperview().inset(10)
+        if isOld == false {
+            let botLabel = UILabel()
+            botLabel.text = sortedArr?[indexPath.row].cost
+            botLabel.font = .systemFont(ofSize: 15, weight: .regular)
+            botLabel.textColor = .white
+            cell.addSubview(botLabel)
+            botLabel.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().inset(10)
+                make.left.equalToSuperview().inset(10)
+            }
         }
         
-        let redButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setBackgroundImage(.redButton, for: .normal)
-            return button
-        }()
-        cell.addSubview(redButton)
-        redButton.snp.makeConstraints { make in
-            make.height.width.equalTo(44)
-            make.top.right.equalToSuperview().inset(5)
+        
+        if isOld == false {
+            let redButton: UIButton = {
+                let button = UIButton(type: .system)
+                button.setBackgroundImage(.redButton, for: .normal)
+                return button
+            }()
+            cell.addSubview(redButton)
+            redButton.snp.makeConstraints { make in
+                make.height.width.equalTo(44)
+                make.top.right.equalToSuperview().inset(5)
+            }
+            redButton.tag = indexPath.row
+           
+            redButton.addTarget(self, action: #selector(menuButtonTapped(sender:)), for: .touchUpInside)
         }
-        redButton.tag = indexPath.row
-       
-        redButton.addTarget(self, action: #selector(menuButtonTapped(sender:)), for: .touchUpInside)
+        
+        if isOld == true {
+            let unUsedButton = UIButton()
+            unUsedButton.isEnabled = false
+            unUsedButton.layer.cornerRadius = 25
+            unUsedButton.backgroundColor = UIColor(red: 229/255, green: 25/255, blue: 64/255, alpha: 1)
+            unUsedButton.setTitle("More details", for: .normal)
+            unUsedButton.setTitleColor(.black, for: .normal)
+            unUsedButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .regular)
+            cell.addSubview(unUsedButton)
+            unUsedButton.snp.makeConstraints { make in
+                make.right.top.equalToSuperview().inset(15)
+                make.height.equalTo(50)
+                make.width.equalTo(103)
+            }
+        }
+        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 169, height: 237)
+        if isOld == true {
+            return CGSize(width: collectionView.frame.width, height: 237)
+        } else {
+            return CGSize(width: 169, height: 237)
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailExcurseViewController()
+        var index = 0
+        for _ in 0..<excursions.count {
+            if sortedArr?[indexPath.row].isActive == excursions[index].isActive, sortedArr?[indexPath.row].name == excursions[index].name, sortedArr?[indexPath.row].country == excursions[index].country , sortedArr?[indexPath.row].image == excursions[index].image {
+                vc.index = index
+                vc.item = excursions[index]
+                self.navigationItem.backBarButtonItem = UIBarButtonItem(
+                    title: "Back",
+                    style: .plain,
+                    target: nil,
+                    action: nil
+                )
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
+            } else {
+                index += 1
+            }
+        }
     }
 }
 
@@ -300,6 +390,4 @@ extension CountryViewController: CountryViewControllerDelegate {
         self.elements?.1 = elements
         butTapped(sender: arrButtons[0])
     }
-    
-    
 }

@@ -1,18 +1,23 @@
 //
-//  ExcurseViewController.swift
+//  OldExcurseViewController.swift
 //  Aviator Adventures
 //
-//  Created by Владимир Кацап on 27.08.2024.
+//  Created by Владимир Кацап on 29.08.2024.
 //
 
 import UIKit
 
-protocol ExcurseViewControllerDelegate: AnyObject {
+
+var oldExcursions: [Excursion] = []
+
+protocol OldExcurseViewControllerDelegate: AnyObject {
     func reloadProfile()
     func reloadData()
+        
 }
 
-class ExcurseViewController: UIViewController {
+
+class OldExcurseViewController: UIViewController {
     
     var profileButton: UIButton?
     var nameLabel: UILabel?
@@ -26,11 +31,10 @@ class ExcurseViewController: UIViewController {
     var addNewCountryButton: UIButton?
     var countryCollection: UICollectionView?
     var countryArr = [String]()
-    var selectedCountry = "All"
+    var selectedCountry = ""
     
     var mainCollection: UICollectionView?
     var indexCollectionNoUsage = 0
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,17 +50,21 @@ class ExcurseViewController: UIViewController {
         checkArr()
     }
 
-    
-    // сделать второй блок
     override func viewDidLoad() {
         super.viewDidLoad()
+        oldExcursions = loadAthleteArrFromFile() ?? []
         view.backgroundColor = UIColor(red: 31/255, green: 31/255, blue: 31/255, alpha: 1)
+        
+        if oldExcursions.count > 0 {
+            selectedCountry = oldExcursions[0].country
+        }
+        
         createInterface()
         checkArr()
     }
     
     func checkArr() {
-        if excursions.count > 0 {
+        if oldExcursions.count > 0 {
             noExcursLabel?.alpha = 0
             addFirstExc?.alpha = 0
             addNewCountryButton?.alpha = 1
@@ -74,9 +82,26 @@ class ExcurseViewController: UIViewController {
             //coll.alp = 0
         }
         sortArr()
-        selectedCountry = "All"
         countryCollection?.reloadData()
         mainCollection?.reloadData()
+    }
+    
+    
+    func loadAthleteArrFromFile() -> [Excursion]? {
+        let fileManager = FileManager.default
+        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("Unable to get document directory")
+            return nil
+        }
+        let filePath = documentDirectory.appendingPathComponent("oldExcu.plist")
+        do {
+            let data = try Data(contentsOf: filePath)
+            let athleteArr = try JSONDecoder().decode([Excursion].self, from: data)
+            return athleteArr
+        } catch {
+            print("Failed to load or decode athleteArr: \(error)")
+            return nil
+        }
     }
     
     func sortArr() {
@@ -86,7 +111,7 @@ class ExcurseViewController: UIViewController {
         var sortedTimed: [(String, Excursion)] = []
         
         
-        for i in excursions {
+        for i in oldExcursions {
             sortedTimed.append((i.country, i))
         }
         
@@ -101,6 +126,30 @@ class ExcurseViewController: UIViewController {
         countryArr.removeAll()
         for i in sortedArr {
             countryArr.append(i.0)
+        }
+        
+        if countryArr.count > 0 {
+            selectedCountry = countryArr[0]
+            
+            sortedArr.removeAll()
+            
+            var sortedTimed: [(String, Excursion)] = []
+            for i in oldExcursions {
+                if i.country == selectedCountry {
+                    sortedTimed.append((i.country, i))
+                }
+            }
+            
+            for i in sortedTimed {
+                if let index = sortedArr.firstIndex(where: { $0.0 == i.0 }) {
+                    sortedArr[index].1.append(i.1)
+                } else {
+                    sortedArr.append((i.0, [i.1]))
+                }
+            }
+            
+            countryCollection?.reloadData()
+            mainCollection?.reloadData()
         }
         
     }
@@ -256,106 +305,43 @@ class ExcurseViewController: UIViewController {
             make.top.equalTo(countryCollection!.snp.bottom).inset(-15)
         })
         
+        
+        
     }
-    
-    
     
     @objc func openNewEditEsc() {
        let vc = NewAndEditExcViewController()
         vc.isNew = true
-        vc.delegate = self
+        vc.oldDelegate = self
         vc.showCountry = true
+        vc.isOld = true
         self.present(vc, animated: true)
     }
     
-    func openEditEditEsc(index:  Int, exc: Excursion) {
-       let vc = NewAndEditExcViewController()
-        vc.isNew = false
-        vc.delegate = self
-        vc.showCountry = false
-        vc.index = index
-        vc.excurseEdit = exc
-        self.present(vc, animated: true)
-    }
+   
     
     @objc func openProfile() {
         let vc = ProfileViewController()
-        vc.secDel = self
+        vc.theeDel = self
         vc.userProf = user
         self.present(vc, animated: true)
     }
     
     @objc func createNew(sender: UIButton) {
         let vc = NewAndEditExcViewController()
-        vc.delegate = self
+        vc.oldDelegate = self
+        vc.isOld = true
         vc.isNew = true
         vc.showCountry = false
-        if selectedCountry == "All" {
-            vc.country = countryArr[sender.tag]
-        } else {
-            vc.country = selectedCountry
-        }
+        vc.country = selectedCountry
         self.present(vc, animated: true)
     }
     
-    
-    @objc func menuButtonTapped(sender: UIButton) {
-        
-        let associatedString = sender.associatedString
-        
-        let firstAction = UIAction(title: "Edit", image: nil) { _ in
-            var edit = 0
-            for i in excursions {
-                if excursions[edit].isActive == associatedString?.isActive, excursions[edit].name == associatedString?.name, excursions[edit].country == associatedString?.country, excursions[edit].image == associatedString?.image {
-                    self.openEditEditEsc(index: edit, exc: i)
-                } else {
-                    edit += 1
-                }
-            }
-            
-        }
-        
-        let secondAction = UIAction(title: "Delete card", image: nil) { _ in
-         var del = 0
-            for _ in excursions {
-                if excursions[del].isActive == associatedString?.isActive, excursions[del].name == associatedString?.name, excursions[del].country == associatedString?.country, excursions[del].image == associatedString?.image {
-                    excursions.remove(at:del)
-                    do {
-                        let data = try JSONEncoder().encode(excursions) //тут мкассив конвертируем в дату
-                        try self.saveAthleteArrToFile(data: data)
-                        self.checkArr()
-                    } catch {
-                        print("Failed to encode or save athleteArr: \(error)")
-                    }
-                    
-                } else {
-                    del += 1
-                }
-            }
-        }
-        
-        let menu = UIMenu(title: "", children: [firstAction, secondAction])
-        
-        if #available(iOS 14.0, *) {
-            sender.menu = menu
-            sender.showsMenuAsPrimaryAction = true
-        }
-    }
-    
-    func saveAthleteArrToFile(data: Data) throws {
-        let fileManager = FileManager.default
-        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let filePath = documentDirectory.appendingPathComponent("excu.plist")
-            try data.write(to: filePath)
-        } else {
-            throw NSError(domain: "SaveError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unable to get document directory"])
-        }
-    }
-    
+
 }
 
 
-extension ExcurseViewController: ExcurseViewControllerDelegate {
+extension OldExcurseViewController: OldExcurseViewControllerDelegate {
     func reloadProfile() {
         if user != nil {
             profileButton?.setBackgroundImage(UIImage(data: user?.image ?? Data()), for: .normal)
@@ -374,10 +360,10 @@ extension ExcurseViewController: ExcurseViewControllerDelegate {
 }
 
 
-extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension OldExcurseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == countryCollection {
-            return countryArr.count + 1
+            return countryArr.count
         } else {
             return sortedArr.count
         }
@@ -396,11 +382,7 @@ extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataS
             button.setTitleColor(.white.withAlphaComponent(0.5), for: .normal)
             button.isUserInteractionEnabled = false
             
-            if indexPath.row == 0 {
-                button.setTitle("All", for: .normal)
-            } else {
-                button.setTitle(countryArr[indexPath.row - 1], for: .normal)
-            }
+            button.setTitle(countryArr[indexPath.row], for: .normal)
             cell.addSubview(button)
             button.snp.makeConstraints { make in
                 make.left.right.equalToSuperview()
@@ -502,19 +484,7 @@ extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataS
                         make.left.equalToSuperview().inset(10)
                     }
                     
-                    let redButton: UIButton = {
-                        let button = UIButton(type: .system)
-                        button.setBackgroundImage(.redButton, for: .normal)
-                        return button
-                    }()
-                    button.addSubview(redButton)
-                    redButton.snp.makeConstraints { make in
-                        make.height.width.equalTo(44)
-                        make.top.right.equalToSuperview().inset(5)
-                    }
-                    redButton.tag = indexPath.row
-                    redButton.associatedString = sortedArr[indexPath.row].1[i]
-                    redButton.addTarget(self, action: #selector(menuButtonTapped(sender:)), for: .touchUpInside)
+                   
                     button.backgroundColor = .black
                     return button
                 }()
@@ -551,23 +521,14 @@ extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == countryCollection {
             
-            if indexPath.row == 0 {
-                selectedCountry = "All"
-            } else {
-                selectedCountry = countryArr[indexPath.row - 1]
-            }
-            print(selectedCountry)
+            selectedCountry = countryArr[indexPath.row]
             
             sortedArr.removeAll()
             
             var sortedTimed: [(String, Excursion)] = []
-            for i in excursions {
-                if selectedCountry == "All" {
+            for i in oldExcursions {
+                if i.country == selectedCountry {
                     sortedTimed.append((i.country, i))
-                } else {
-                    if i.country == selectedCountry {
-                        sortedTimed.append((i.country, i))
-                    }
                 }
             }
             
@@ -585,8 +546,8 @@ extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else {
             let element = sortedArr[indexPath.row]
             let vc = CountryViewController()
-            vc.isOld = false
-            vc.delegate = self
+            vc.isOld = true
+            //vc.delegate = self
             vc.elements = element
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -604,15 +565,4 @@ extension ExcurseViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 
-private var AssociatedKey: UInt8 = 0
 
-extension UIButton {
-    var associatedString: Excursion? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKey) as? Excursion
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-}

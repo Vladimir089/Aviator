@@ -22,6 +22,8 @@
 		15000B162C7DE66900DB45BC /* ExcurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B152C7DE66900DB45BC /* ExcurseViewController.swift */; };
 		15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */; };
 		15000B452C7FA40200DB45BC /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B442C7FA40200DB45BC /* CountryViewController.swift */; };
+		15000B472C809E3300DB45BC /* DetailExcurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B462C809E3300DB45BC /* DetailExcurseViewController.swift */; };
+		15000B4A2C80C9B400DB45BC /* OldExcurseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15000B492C80C9B400DB45BC /* OldExcurseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		15000B152C7DE66900DB45BC /* ExcurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcurseViewController.swift; sourceTree = "<group>"; };
 		15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAndEditExcViewController.swift; sourceTree = "<group>"; };
 		15000B442C7FA40200DB45BC /* CountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
+		15000B462C809E3300DB45BC /* DetailExcurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailExcurseViewController.swift; sourceTree = "<group>"; };
+		15000B492C80C9B400DB45BC /* OldExcurseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldExcurseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 		15000AEA2C7CADAF00DB45BC /* Aviator Adventures */ = {
 			isa = PBXGroup;
 			children = (
+				15000B482C80C99F00DB45BC /* OldExcurse */,
 				15000B142C7DE64F00DB45BC /* Excurs */,
 				15000B0F2C7CDC8600DB45BC /* Model */,
 				15000B0C2C7CC90A00DB45BC /* Home */,
@@ -145,8 +150,17 @@
 				15000B152C7DE66900DB45BC /* ExcurseViewController.swift */,
 				15000B172C7DF05100DB45BC /* NewAndEditExcViewController.swift */,
 				15000B442C7FA40200DB45BC /* CountryViewController.swift */,
+				15000B462C809E3300DB45BC /* DetailExcurseViewController.swift */,
 			);
 			path = Excurs;
+			sourceTree = "<group>";
+		};
+		15000B482C80C99F00DB45BC /* OldExcurse */ = {
+			isa = PBXGroup;
+			children = (
+				15000B492C80C9B400DB45BC /* OldExcurseViewController.swift */,
+			);
+			path = OldExcurse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15000B4A2C80C9B400DB45BC /* OldExcurseViewController.swift in Sources */,
 				15000B182C7DF05100DB45BC /* NewAndEditExcViewController.swift in Sources */,
 				15000B112C7CDC9100DB45BC /* Model.swift in Sources */,
 				15000B452C7FA40200DB45BC /* CountryViewController.swift in Sources */,
@@ -233,6 +248,7 @@
 				15000AEC2C7CADAF00DB45BC /* AppDelegate.swift in Sources */,
 				15000AEE2C7CADAF00DB45BC /* SceneDelegate.swift in Sources */,
 				15000B0B2C7CC90600DB45BC /* TabBarViewController.swift in Sources */,
+				15000B472C809E3300DB45BC /* DetailExcurseViewController.swift in Sources */,
 				15000B082C7CB55500DB45BC /* OnbUserViewController.swift in Sources */,
 				15000B162C7DE66900DB45BC /* ExcurseViewController.swift in Sources */,
 				15000B132C7CF2C400DB45BC /* ProfileViewController.swift in Sources */,
