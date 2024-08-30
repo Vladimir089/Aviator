@@ -349,6 +349,7 @@ extension CountryViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
         }
         
+        //сделать окно для добавления впечатлений и тд 
         
         return cell
     }
@@ -363,24 +364,50 @@ extension CountryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailExcurseViewController()
-        var index = 0
-        for _ in 0..<excursions.count {
-            if sortedArr?[indexPath.row].isActive == excursions[index].isActive, sortedArr?[indexPath.row].name == excursions[index].name, sortedArr?[indexPath.row].country == excursions[index].country , sortedArr?[indexPath.row].image == excursions[index].image {
-                vc.index = index
-                vc.item = excursions[index]
-                self.navigationItem.backBarButtonItem = UIBarButtonItem(
-                    title: "Back",
-                    style: .plain,
-                    target: nil,
-                    action: nil
-                )
-                self.navigationController?.pushViewController(vc, animated: true)
-                break
-            } else {
-                index += 1
+        if isOld == false {
+            let vc = DetailExcurseViewController()
+            var index = 0
+            for _ in 0..<excursions.count {
+                if sortedArr?[indexPath.row].isActive == excursions[index].isActive, sortedArr?[indexPath.row].name == excursions[index].name, sortedArr?[indexPath.row].country == excursions[index].country , sortedArr?[indexPath.row].image == excursions[index].image {
+                    vc.index = index
+                    vc.item = excursions[index]
+                    self.navigationItem.backBarButtonItem = UIBarButtonItem(
+                        title: "Back",
+                        style: .plain,
+                        target: nil,
+                        action: nil
+                    )
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    break
+                } else {
+                    index += 1
+                }
+            }
+        } else {
+            let vc = OldDetailExViewController()
+            vc.exc = sortedArr?[indexPath.row]
+            var index = 0
+            for i in oldExcursions {
+                if i.isActive == sortedArr?[indexPath.row].isActive, i.name == sortedArr?[indexPath.row].name, i.country == sortedArr?[indexPath.row].country, i.type == sortedArr?[indexPath.row].type {
+                    vc.index = index
+                    self.navigationItem.backBarButtonItem = UIBarButtonItem(
+                        title: "Back",
+                        style: .plain,
+                        target: nil,
+                        action: nil
+                    )
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    //додел
+                    break
+                } else {
+                    index += 1
+                }
             }
         }
+        
+        
+        
+        
     }
 }
 
